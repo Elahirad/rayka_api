@@ -161,3 +161,16 @@ docker run -p "5432:5432" -e "POSTGRES_PASSWORD=rayka_api" -e "POSTGRES_USER=ray
 ```bash
 pytest -vv .
 ```
+
+## Redis and RabbitMQ
+
+This project supports Redis and RabbitMQ but they are disabled at this moment.
+
+To enable them uncomment related lines in these files
+
+
+```bash
+rayka_api/web/api/router.py
+rayka_api/web/lifespan.py
+docker-compose.yml
+```

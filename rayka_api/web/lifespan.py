@@ -4,8 +4,8 @@ from typing import AsyncGenerator
 from fastapi import FastAPI
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
-from rayka_api.services.rabbit.lifespan import init_rabbit, shutdown_rabbit
-from rayka_api.services.redis.lifespan import init_redis, shutdown_redis
+# from rayka_api.services.rabbit.lifespan import init_rabbit, shutdown_rabbit # noqa
+# from rayka_api.services.redis.lifespan import init_redis, shutdown_redis # noqa
 from rayka_api.settings import settings
 
 
@@ -44,12 +44,12 @@ async def lifespan_setup(
 
     app.middleware_stack = None
     _setup_db(app)
-    init_redis(app)
-    init_rabbit(app)
+    # init_redis(app) # noqa
+    # init_rabbit(app) # noqa
     app.middleware_stack = app.build_middleware_stack()
 
     yield
     await app.state.db_engine.dispose()
 
-    await shutdown_redis(app)
-    await shutdown_rabbit(app)
+    # await shutdown_redis(app) # noqa
+    # await shutdown_rabbit(app) #noqa

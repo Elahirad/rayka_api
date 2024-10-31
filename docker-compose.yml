@@ -10,10 +10,10 @@ services:
     depends_on:
       db:
         condition: service_healthy
-      redis:
-        condition: service_healthy
-      rmq:
-        condition: service_healthy
+      # redis:
+      #   condition: service_healthy
+      # rmq:
+      #   condition: service_healthy
     environment:
       RAYKA_API_HOST: 0.0.0.0
       RAYKA_API_DB_HOST: rayka_api-db
@@ -54,31 +54,31 @@ services:
       db:
         condition: service_healthy
 
-  redis:
-    image: bitnami/redis:6.2.5
-    hostname: "rayka_api-redis"
-    restart: always
-    environment:
-      ALLOW_EMPTY_PASSWORD: "yes"
-    healthcheck:
-      test: redis-cli ping
-      interval: 1s
-      timeout: 3s
-      retries: 50
+  # redis:
+  #   image: bitnami/redis:6.2.5
+  #   hostname: "rayka_api-redis"
+  #   restart: always
+  #   environment:
+  #     ALLOW_EMPTY_PASSWORD: "yes"
+  #   healthcheck:
+  #     test: redis-cli ping
+  #     interval: 1s
+  #     timeout: 3s
+  #     retries: 50
 
-  rmq:
-    image: rabbitmq:3.9.16-alpine
-    hostname: "rayka_api-rmq"
-    restart: always
-    environment:
-      RABBITMQ_DEFAULT_USER: "guest"
-      RABBITMQ_DEFAULT_PASS: "guest"
-      RABBITMQ_DEFAULT_VHOST: "/"
-    healthcheck:
-      test: rabbitmq-diagnostics check_running -q
-      interval: 3s
-      timeout: 3s
-      retries: 50
+  # rmq:
+  #   image: rabbitmq:3.9.16-alpine
+  #   hostname: "rayka_api-rmq"
+  #   restart: always
+  #   environment:
+  #     RABBITMQ_DEFAULT_USER: "guest"
+  #     RABBITMQ_DEFAULT_PASS: "guest"
+  #     RABBITMQ_DEFAULT_VHOST: "/"
+  #   healthcheck:
+  #     test: rabbitmq-diagnostics check_running -q
+  #     interval: 3s
+  #     timeout: 3s
+  #     retries: 50
 
 
 
